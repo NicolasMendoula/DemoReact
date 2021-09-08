@@ -1,45 +1,43 @@
 import React from "react";
-import logo from "../asset/logo.jpg";
-import menu from "../data/menu";
-import defilementDoux from "./Functions";
+import FormulaireContact from "./FormulaireContact";
 
-const SectionContact = ()=>{
+const SectionContact = ({progression, minMax})=>{
+    let creditLeft = (-10/9*progression - 100/9);
+    creditLeft = minMax(creditLeft,0,100);
+    let creditOpa = (1/90)*progression + 10/9;
+    creditOpa = minMax(creditOpa,0,1);
+    let rightFondForm = 50/93*progression + 350/93;
+    rightFondForm = minMax(rightFondForm,-50,0);
+    let formWrapperRight =  50/97*progression + 150/97;
+    formWrapperRight = minMax(formWrapperRight,-50,0);
+
     return(
         <React.Fragment>
-        <div className="container">
-            <h2>Contact</h2>
-            <p>Il était sensé avoir un formulaire ici mais je n'ai pas eu le temps de le faire !</p>
-            <h3>Credit photo</h3>
-            <div>
-            <a href='https://fr.freepik.com/photos/fond'>Fond photo créé par GarryKillian - fr.freepik.com</a>
-        </div>
-        </div>
-    <nav>
-        <div className="container">
-        <div className="flex">
-            <div className="footerLogo">
-                <img src={logo} alt="Démo" />
-                <p>Demo React</p>
-            </div>
-            <div className="footerMenu">
-                <h3>Navigation</h3>
-                <ul>
-                    {menu.map((item,index)=>(<li key={item.title+'_'+index}><a href={item.target} onClick={defilementDoux}>{item.title}</a></li>)) }
-                </ul>
-            </div>
-            <div>
-                <h3>D'autres exemples ici</h3>
-                <ul>
-                    <li><a href="https://infinity.mendoula.com/">Un site immobilier</a></li>
-                    <li><a href="https://mendoula.com/">Un site Portfolio en cours</a></li>
-                    <li><a href="https://github.com/NicolasMendoula/DemoReact.git">Le code source pour cete page</a></li>
-                </ul>
-            </div>
-        </div>
-        </div>
-    </nav>
+            <div className="formWrapper flex">
+                <div style={{ right:formWrapperRight+'%'}}>
+                <h2>Contact</h2>
+                <FormulaireContact />
+                </div>
 
-    </React.Fragment>
+            </div>
+            
+            <div className="fondContact">
+                <div className="fondFormulaire" style={{right: rightFondForm+'%'}}>
+                    <div className="triangleContactB"></div>
+
+                </div>
+                <div className="creditPhoto" style={{ left:creditLeft+'%', opacity: creditOpa}}>
+                    <div className="creditWrapper">
+                        <h3>Credit photo</h3>
+                        <p>L'image de fond a été trouvé sur le site freepik, voici les crédits de l'auteur<br />
+                        <a href='https://fr.freepik.com/photos/fond'>Fond photo créé par GarryKillian - fr.freepik.com</a>
+                        </p>
+                     </div>
+                     <div className="triangleFondCredit" ></div>
+                </div>
+
+            </div>
+        </React.Fragment>
     );
 
 }

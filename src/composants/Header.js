@@ -1,7 +1,7 @@
 import Menu from "./Menu.js";
 import menuItem from "../data/menu.js";
 import logo from "../asset/logo.jpg";
-import progression from "./Functions"
+import progression from "./defilementDoux"
 const Header = ()=> (
 <header>
     <div className="container ">

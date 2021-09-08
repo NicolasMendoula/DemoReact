@@ -2,28 +2,46 @@ import React from "react";
 import SectionAcceuil from "./SectionAccueil";
 import SectionContact from "./SectionContact";
 import SectionPresentation from "./SectionPresentation";
+import { useState } from "react";
+import pageProgression from "./progression";
 
-const Section = (props) => {
+const Section = ({toLoad}) => {
+    const [scroll, setScroll] = useState(0);
+    
+    const minMax = (number, min, max) => {
+        if(number < min){
+            return min;
+        }
+        if(number > max){
+            return max
+        }
+        return number;
+    }
     /* Page à charger */
-    const toLoad = props.toLoad;
     let selectedPage;
     switch(toLoad){
         case 'Accueil':
-            selectedPage = <SectionAcceuil />
+            selectedPage = <SectionAcceuil progression={scroll} minMax={minMax} />
         break;
         case 'Presentation':
-            selectedPage = <SectionPresentation />
+            selectedPage = <SectionPresentation progression={scroll} minMax={minMax}/>
         break;
         case 'Contact':
-            selectedPage = <SectionContact />
+            selectedPage = <SectionContact progression={scroll} minMax={minMax} />
         break;
         default:
             selectedPage = <p>Non</p>
     }
 
+    //On attends que le DOM soit chargé pour mettre à jour l'Etat
+    document.addEventListener('DOMContentLoaded',()=> setScroll(pageProgression(toLoad.toLowerCase()))) 
+    document.addEventListener('scroll',()=>{
+        setScroll(pageProgression(toLoad.toLowerCase()));
+    })
+
     return (
             <React.Fragment>
-                {selectedPage}
+                {selectedPage}                
             </React.Fragment>)
 }
 

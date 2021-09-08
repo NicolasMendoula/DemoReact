@@ -1,4 +1,4 @@
-import defilementDoux from "./Functions";
+import defilementDoux from "./defilementDoux";
 
 const Menu = (props)=>{
     let items = props.menuData;

@@ -15,6 +15,11 @@ li{
     list-style: none;
 }
 
+.progression{
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
 /* Structure -----------------------*/
 
 .container{
@@ -25,7 +30,7 @@ li{
     display: relative;
 }
 .absolute{
-    display: absolute;
+    position: absolute;
 }
 .flex{
     display: flex;
@@ -42,7 +47,7 @@ header{
     border-bottom: solid 1px #ccc;
     box-shadow: 3px 3px 3px rgba(0,0,0,0.20);
     position: fixed;
-    z-index: 2;
+    z-index: 9999;
     background: #fff;
     left: 0;
     right: 0;
@@ -92,12 +97,21 @@ body{
 section{
     min-height: 100vh;
     padding: 3.125% 1.5625%;
+    overflow: hidden;
 }
 
 /* Accueil */
 #accueil{
-    padding:0 ;
-    
+    padding:0;   
+}
+#accueil .container{
+    overflow: hidden;
+}
+
+#accueil h2,
+#accueil p,
+#accueil button{
+    position: relative;
 }
 .innerIntro{
     justify-content: flex-end;
@@ -121,9 +135,21 @@ section{
     top: 0;
     left: 50%;
     background:#fff;
-    z-index: 0;
+    z-index: -2;
     box-shadow: -25vw 0 25vw rgb(0 0 0 / 25%);
 }
+#accueil .triangle{
+    width: 0;
+    height: 100vh;
+    border-style: solid;
+    border-width: 0px 25vw 100vh 0;
+    border-color: transparent #fff transparent transparent;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    z-index: -1;
+}
+
 #accueil h2{
     font-size: 2.1em;
     line-height: 1;
@@ -151,15 +177,13 @@ section{
 #accueil button:hover{
     filter: brightness(1.5);
 }
-#accueil .triangle{
-    width: 0;
-    height: 100vh;
-    border-style: solid;
-    border-width: 0px 25vw 100vh 0;
-    border-color: transparent #fff transparent transparent;
+
+.fondWrap{
     position: absolute;
+    top: 0;
     bottom: 0;
-    right: 50%;
+    left: 0;
+    right:0;
     z-index: -1;
 }
 
@@ -176,6 +200,7 @@ section{
 .specs{
     width:50%;
     padding: 3.125% 12.5% 3.125% 3.125%;
+    position: relative;
 }
 .specs p{
     margin-bottom: 1em;
@@ -189,6 +214,7 @@ section{
     text-align: center;
     font-size: 2em;
     margin-bottom:30px;
+    transform-origin: center;
 }
 .listeTech i{
     font-size: 4em;
@@ -197,7 +223,7 @@ section{
 .techWrap{
     width: 50%;
     padding:3.125%;
-    background: rgb(22,79,136);
+    background: rgb(22, 79, 136);
 background: -moz-linear-gradient(126deg, rgba(22,79,136,1) 0%, rgba(13,61,109,1) 100%);
 background: -webkit-linear-gradient(126deg, rgba(22,79,136,1) 0%, rgba(13,61,109,1) 100%);
 background: linear-gradient(126deg, rgba(22,79,136,1) 0%, rgba(13,61,109,1) 100%);
@@ -206,6 +232,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
     border-radius: 3px;
     box-shadow: 3px 3px 3px rgba(0,0,0.25);
     z-index:-1;
+    position: relative;
 }
 .fondSpecs{
    background-color: #fff;
@@ -213,7 +240,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
    top: 0;
    left: 0;
    bottom: 0;
-   width: 40%;
+   width: 40vw;
    z-index: -1;
 }
 
@@ -224,7 +251,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
     border-width: 100vh 0 0 20vw;
     border-color: transparent transparent transparent #fff;
     position:absolute;
-    left:40%;
+    left:40vw;
     bottom:0;
     z-index: -1;
 }
@@ -235,34 +262,137 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
     min-height: initial;
     padding: 3.125% 0 0;
     position: relative;
-    background:#555;
     color:#fff;
 }
 #contact h2{
-    font-size: 2em;
+    font-size: 2.5em;
+    margin: 1em 0;
+    color: #333;
+}
+
+#contact > div{
+    padding: 6.25% 3.125%
+}
+
+/*Formulaire de contact -------------*/
+.formWrapper{
+    justify-content: flex-end;
+}
+.formWrapper > div{
+    width: 50%;
+    padding: 3.125% 0 3.125% 3.125%;
+    position: relative;
+    z-index: 4;
+}
+
+#contact form{
+    padding: 3.125%;
+    background: #fff;
+    color:#333;
+    max-width: 580px;
+}
+.fieldLine{
+    display: flex;
+    justify-content: flex-start;
+    padding: 1.5625% 3.125%;
+}
+.fieldLine  label{
+    margin: 0 3.125% 0 0;
+    display: inline-block;
+    line-height: 36px;
+    width: 25%;
+    flex-grow: 1;
+}
+.fieldLine input, .fieldLine select, .fieldLine textarea{
+    flex-grow: 1;
+    width: 75%;
+}
+.fieldLine textarea{
+    min-height: 150px;
+}
+.submitLine{
+    display: flex;
+    justify-content: flex-end;
+    padding: 3.125%;
+}
+#submit{
+    background: #000;
+    color: #fff;
+    line-height: 40px;
+    padding: 0 3.125%;
+    min-width: calc(100% / 3);
+    text-transform: uppercase;
+    border-style: none;
+    border-radius: 3px;
+
+}
+/* Block de fond du contact */
+
+/* Crédit photo */
+#contact .creditPhoto{
+    padding: 3.125%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    background: #333;
+    padding: 3.125%;
+    background: rgb(22,79,136);
+    background: linear-gradient(
+126deg, rgba(22,79,136,1) 0%, rgba(13,61,109,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endColorstr="#0d3d6d",GradientType=1);
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px rgb(0 0 0);
+}
+.creditWrapper{
+    width: 50%;
+    padding-right: 3.125%;
+}
+#contact .creditPhoto h3{
+    font-size: 1.5em;
     margin-bottom: 1em;
 }
-#contact > div{
-    padding: 1.5625%
+
+.triangleFondCredit{
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    width: 0;
+    left: 0;
+height: 0;
+border-style: solid;
+border-width: 0 0 12.5vh 50vw;
+border-color: transparent transparent #164f88 transparent;
+
 }
-#contact nav{
+
+
+/* Footer Navigation */
+#footerNav{
     background: #222;
     color:#fff;
     padding: 3.125%;
+    z-index: 5;
+    position: relative;
+    box-shadow: 0 -3px 3px rgba(0,0,0, 0.25);
 }
 
-#contact nav .flex{
+#footerNav .flex{
     justify-content:space-between;
 }
-#contact h3{
+#footerNav h3{
     font-size: 1.5em;
     margin-bottom: 20px;
 }
 
-#contact nav ul{
+
+
+#footerNav ul{
     display: initial;
 }
-#contact nav li{
+#footerNav li{
     list-style-type: none;
     margin: 0 0 10px 0;
     line-height: initial;
@@ -277,11 +407,39 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
     top:0;
     bottom: 0;
     left:0;
-    right:40%;
-    background: #fff;
-    z-index: -1;
+    right:0;
+    z-index: 3;
 }
-
+.triangleContactA{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 25vh 60vw 0 0;
+    border-color: #fff transparent transparent transparent;
+    position: absolute;
+    top: 100%;
+    left:0;
+}
+.triangleContactB{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 3.125vh 50vw;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+}
+.fondFormulaire{
+    position: absolute;
+    top: 15.625vh;
+    right: 0;
+    width: 50%;
+    background: #fff;
+    bottom: 0;
+    z-index: 3;
+}
 /*Footer */ 
 footer{
     background-color: #000;
