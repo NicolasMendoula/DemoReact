@@ -6,7 +6,8 @@ const Header = ()=> (
 <header>
     <div className="container ">
         <div className="flex space-between">
-            <div className="logo"><img src={logo} alt="Démo React pour Modis" /></div>
+            <div className="logo">
+                <a href="#"><img src={logo} alt="Démo React pour Modis" /></a></div>
             <Menu menuData={menuItem} globalProgression={progression}/>
         </div>
     </div>

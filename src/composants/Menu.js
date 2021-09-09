@@ -8,7 +8,7 @@ const Menu = (props)=>{
                 {
                     items.map((item,index)=> {
                     let courrant = index === 0 ? 'current': null;
-                    return(<li key={item+index} className={courrant}><a href={item.target} onClick={defilementDoux} >{item.title}</a></li>)
+                    return(<li key={item+index} className={courrant} id={'menu_'+(item.title).toLowerCase()}><a href={item.target} onClick={defilementDoux} >{item.title}</a></li>)
                     })
                 }
             </ul>

@@ -8,8 +8,15 @@ import siteInfo from "../data/general.js";
 import FooterNav from "./FooterNav";
 import logo from "../asset/logo.jpg";
 import defilementDoux from "./defilementDoux";
+import currentSection from "./currentSection";
 
 function App() {
+  const closeModal = ()=> document.querySelector('.messageModal').style.display = 'none';
+
+  document.addEventListener('scroll',(e)=>{
+    e.stopPropagation();
+    currentSection();
+  });
   return (
     <React.Fragment >
         <Header />
@@ -27,6 +34,15 @@ function App() {
         <Footer siteTitle={siteInfo.siteName}
                 dateCreation={siteInfo.anneeCreation}
                 auteur={siteInfo.auteur} />
+        <div className="messageModal" style ={{display:'none'}}>
+          <div>
+            <div className="close" onClick={closeModal}>Fermer <i className="fas fa-window-close"></i></div>
+
+            <p>Merci d'avoir participé à cette démo !<br/>
+              J'espère qu'elle vous aura convaincu
+            </p>
+          </div>
+        </div>
 
     </React.Fragment>
   ); 

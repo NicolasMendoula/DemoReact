@@ -74,8 +74,13 @@ nav li{
     position: static;
     z-index: 1;
 }
+nav li:hover{
+    border-bottom: solid 3px #888;
+    font-weight: bold;
+}
 nav li.current{
     border-bottom: solid 3px #888;
+    font-weight: bold;
 }
 .progressionBar{
     position: absolute;
@@ -324,7 +329,14 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#164f88",endCo
     text-transform: uppercase;
     border-style: none;
     border-radius: 3px;
-
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#submit:disabled{
+    background-color: #888;
+}
+#submit:hover{
+    background-color: #2bc0db;
 }
 /* Block de fond du contact */
 
@@ -449,6 +461,55 @@ footer p{
     font-size: 0.8em;
     line-height: 50px;
     text-align: center;
+}
+
+.messageModal{
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+}
+.messageModal > div{
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    left: calc(50% - 200px);
+    top: calc(50% - 100px);
+    background-color: #fff;
+    padding: 3.125%;
+    text-align: center;
+    border-radius: 3px;
+    animation: popUp 0.5s ease-out forwards;
+    transform-origin: center;
+    transform: scale(0);
+}
+
+@keyframes popUp {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+    
+}
+
+.messageModal > div > p{
+    position: absolute;
+    height: 50px;
+    top: calc(50% - 12.5px);
+    left: 0;
+    right: 0;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3.125%;
+    cursor: pointer;
 }
 
 /* Media Queries */
